@@ -1300,23 +1300,9 @@ function cwxmr_add_fields() {
 		'select2'    => array( 'allowClear' => false )
 	) );
 
-	/*
-	 * HD wallet section start
-	 */
-
-	Redux::setField( 'cryptowoo_payments', array(
-		'section_id' => 'wallets-other',
-		'id'         => 'wallets-other-xmr',
-		'type'       => 'section',
-		'title'      => __( 'Monero', 'cryptowoo-monero-addon' ),
-		//'required' => array('testmode_enabled','equals','0'),
-		'icon'       => 'cc-XMR',
-		//'subtitle' => __('Use the field with the correct prefix of your Litecoin MPK. The prefix depends on the wallet client you used to generate the key.', 'cryptowoo-hd-wallet-addon'),
-		'indent'     => true,
-	) );
 
 	/*
-	 * Extended public key
+	 * Address and view key
 	 */
 	Redux::setField( 'cryptowoo_payments', array(
 		'section_id'        => 'wallets-other',
@@ -1337,67 +1323,6 @@ function cwxmr_add_fields() {
 		'validate_callback' => 'cwma_validate_monero_view_key',
 		//ToDo: Validate view key
 		//'validate_callback' => 'redux_validate_view_key',
-	) );
-
-	/*
-	 * HD wallet section end
-	 */
-	Redux::setField( 'cryptowoo_payments', array(
-		'section_id' => 'wallets-hdwallet',
-		'id'         => 'section-end',
-		'type'       => 'section',
-		'indent'     => false,
-	) );
-
-	// Re-add Bitcoin testnet section
-	Redux::setField( 'cryptowoo_payments', array(
-		'section_id' => 'wallets-hdwallet',
-		'id'         => 'wallets-hdwallet-testnet',
-		'type'       => 'section',
-		'title'      => __( 'TESTNET', 'cryptowoo-hd-wallet-addon' ),
-		//'required' => array('testmode_enabled','equals','0'),
-		'icon'       => 'fa fa-flask',
-		'desc'       => __( 'Accept BTC testnet coins to addresses created via a "tpub..." extended public key. (testing purposes only!)<br><b>Depending on the position of the first unused address, it could take a while until your changes are saved.</b>', 'cryptowoo-hd-wallet-addon' ),
-		'indent'     => true,
-	) );
-
-	Redux::setField( 'cryptowoo_payments', array(
-		'section_id'        => 'wallets-hdwallet',
-		'id'                => 'cryptowoo_btc_test_mpk',
-		'type'              => 'text',
-		'ajax_save'         => false,
-		'username'          => false,
-		'desc'              => __( 'Bitcoin TESTNET extended public key (tpub...)', 'cryptowoo-hd-wallet-addon' ),
-		'title'             => __( 'Bitcoin TESTNET HD Wallet Extended Public Key', 'cryptowoo-hd-wallet-addon' ),
-		'validate_callback' => 'redux_validate_mpk',
-		'placeholder'       => 'tpub...',
-		'text_hint'         => array(
-			'title'   => 'Please Note:',
-			'content' => sprintf( __( 'If you enter a used key you will have to run the address discovery process after saving this setting.%sUse a dedicated HD wallet (or at least a dedicated xpub) for your store payments to prevent address reuse.', 'cryptowoo-hd-wallet-addon' ), '<br>' ),
-		)
-	) );
-
-	Redux::setField( 'cryptowoo_payments', array(
-		'section_id'        => 'wallets-hdwallet',
-		'id'                => 'derivation_path_btctest',
-		'type'              => 'select',
-		'subtitle'          => '',
-		'title'             => sprintf( __( '%s Derivation Path', 'cryptowoo-hd-wallet-addon' ), 'BTCTEST' ),
-		'desc'              => __( 'Change the derivation path to match the derivation path of your wallet client.', 'cryptowoo-hd-wallet-addon' ),
-		'validate_callback' => 'redux_validate_derivation_path',
-		'options'           => array(
-			'0/' => __( 'm/0/i (e.g. Electrum Standard Wallet)', 'cryptowoo-hd-wallet-addon' ),
-			'm'  => __( 'm/i (BIP44 Account)', 'cryptowoo-hd-wallet-addon' ),
-		),
-		'default'           => '0/',
-		'select2'           => array( 'allowClear' => false )
-	) );
-
-	Redux::setField( 'cryptowoo_payments', array(
-		'section_id' => 'wallets-hdwallet',
-		'id'         => 'section-end',
-		'type'       => 'section',
-		'indent'     => false,
 	) );
 
 }
